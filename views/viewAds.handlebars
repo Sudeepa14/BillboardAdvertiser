@@ -1,0 +1,17 @@
+<div class="page-header">
+<div class="container">
+       {{#each advertisement}}
+        <ul>
+            <li><label class="col-4" style="font-weight: 500;">Id:</label><span class="col-4">{{this._id}}</span></li>
+            <li><label class="col-4" style="font-weight: 500;">Advertisement title:</label><span class="col-4">{{this.title}}</span></li>
+            <li><Label class="col-4" style="font-weight: 500;">Desctription:</Label><span class="col-4">{{this.desctription}}</span></li>
+            <li><Label class="col-4" style="font-weight: 500;">Width:</Label>{{this.width}}</li>
+            <li><Label class="col-4" style="font-weight: 500;">Height:</Label>{{this.height}}</li>
+            <li><Label class="col-4" style="font-weight: 500;">x codinates:</Label>{{this.longitude}}</li>
+             <li><Label class="col-4" style="font-weight: 500;">y codinates:</Label>{{this.latitude}}</li>
+            
+            
+        </ul>
+    </div>
+    {{/each}}
+</div>

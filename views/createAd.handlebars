@@ -1,0 +1,139 @@
+<div class="page-header">
+ <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 200px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+/*        height: 100%;*/
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</div>
+<div class="contactUs">
+<h4>Create it here</h4>
+<form class="form-horizontal"
+  action="/postAd" method="POST">
+
+  <input type="hidden" name="_csrf" value="{{csrf}}">
+ 
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="titile" class="form-control" id="inputEmail3" name="title"placeholder="Title of the advertisement">
+    </div>
+    
+  </div>
+    <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+       <textarea class="form-control" rows="5" name="description" id="comment"></textarea>
+    </div>
+    
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Select the location </label>
+    <div class="col-sm-8">
+     <div id="map" style="width:50%;height:300px;"> </div>
+    </div>
+      
+    <div class="col-sm-1">
+        <input type="titile" class="form-control" type="text"  name="lng" readonly>
+    </div>
+      
+    <div class="col-sm-1">
+        <input type="titile" class="form-control"  type="text" name="lat" readonly>
+    </div>
+  </div>
+    
+     <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Set the width</label>
+    <div class="col-sm-10">
+     <input type="text" class="form-control" id="inputEmail3" placeholder="Enter the width in meters" name="width">
+    </div>
+  </div>
+    
+   <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">set the height</label>
+    <div class="col-sm-10">
+    <input type="titile" class="form-control" id="input" name="height" placeholder="Enter the hieght in meters">
+    </div>
+       
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-12">
+      <button type="submit" class="btn btn-default">submit</button>
+    </div>
+  </div>
+</form>
+
+<script> var map;
+    var lng = document.getElementsByName('lng')[0];
+    var lat = document.getElementsByName('lat')[0];
+
+
+// initialize the google map
+function initMap() {
+    var googleMap = document.getElementById('map');
+    var thisMarker= null;
+    var mapProp= {
+        center:new google.maps.LatLng(6.9243, 79.868),
+        zoom:15,
+    };
+    
+    var map=new google.maps.Map(googleMap,mapProp);
+    
+// add a event listener to the map to create the marker  
+    map.addListener('click', function(e){
+        
+        placeMarker(e.latLng , map);
+        console.log(e);
+    });
+
+//create the marker object
+    function placeMarker(latLng , map){
+        checkMarker();
+        var marker = new google.maps.Marker({
+            position:latLng,
+            map:map
+        });
+        thisMarker = marker;
+         map.panTo(latLng);
+        
+        // change the form lat and lng input fields
+        lat.value = latLng.lat();
+        lng.value = latLng.lng();
+       
+    }
+//check already a marker is being set, if yes clear it form the map
+    function checkMarker(){
+        if (thisMarker != null){
+            thisMarker.setMap(null);
+        }
+    }
+    }
+     function searchMap(){
+     var googleMap = document.getElementById('googleMap');
+     var thisMarker= null;
+     var mapProp= {
+        center:new google.maps.LatLng(6.9271, 79.8612),
+        zoom:15,
+     };
+     var map=new google.maps.Map(googleMap,mapProp);
+      
+}
+    
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4Zu07Q4NtEzziXmgy-Ehr6NeHT9cvKeY&callback=initMap"></script>
+    
+
+-->
+    
+        
+    
+
