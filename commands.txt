@@ -1,2 +1,24 @@
+#mongo
 sudo killall mongod
 sudo mongod
+
+#git
+git add --all
+
+#new
+echo "# code" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Sudeepa14/code.git
+git push -u origin master
+
+#existin
+git remote add origin https://github.com/Sudeepa14/code.git
+git push -u origin master
+
+
+#mongo
+show dbs
+use <db name>
+show collections

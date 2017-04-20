@@ -4,6 +4,9 @@ module.exports = function(app, passport) {
   
     var Question       = require('../app/models/question');
     var Advertisement  = require('../app/models/advertisement');
+   app.get('/test',function(req,res,next){
+       res.render('testCity'); 
+    });
 
     app.get('/', function(req, res) {
         res.render('home'); // load the index.ejs file
@@ -15,8 +18,7 @@ module.exports = function(app, passport) {
         // render the page and pass in any flash data if it exists
         res.render('login', { message: req.flash('loginMessage') }); 
     });
-        
-
+    
     app.get('/signup', function(req, res) {
 
         // render the page and pass in any flash data if it exists
@@ -30,16 +32,12 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));
     
-    
-  app.post('/login', passport.authenticate('local-login', {
+    app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
-
-
     app.use(function (req, res, next) {
-
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
         return next();
@@ -47,25 +45,26 @@ module.exports = function(app, passport) {
     // if they aren't redirect them to the home page
     res.redirect('/');
     });
-
-
+    
     app.get('/profile', function(req, res) {
         res.render('profile', {
             user : req.user // get the user out of session and pass to template
+                    
         });
     });
-    
-    
+    app.get('/getCity', function(req, res) {
+        res.render('getCity', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
     app.get('/viewcount', function(req, res, next){
       res.send('You viewed this page ' + req.session.views['/viewcount'] + ' times');
     });
-
     
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
-    
     
 //    app.get('/cookie', function(req, res){
 //      res.cookie('username', 'Sudeepa nadeeshan', {expire: new Date() + 555}).send('username has the value of Derek Banas');
@@ -105,15 +104,17 @@ module.exports = function(app, passport) {
     });
 
      app.get('/viewads', function(req, res){
-        // Uses Mongoose schema to run the search (empty conditions)
-        var query = Advertisement.find({});
-        query.exec(function(err, ads){
-            if(err)
-                res.send(err);
-            // If no errors are found, it responds with a JSON of all users
-            res.render('viewAds',{advertisement:ads})
          
-        });
+         res.render('search',{ user : req.user })
+        // Uses Mongoose schema to run the search (empty conditions)
+//        var query = Advertisement.find({});
+//        query.exec(function(err, ads){
+//            if(err)
+//                res.send(err);
+//            // If no errors are found, it responds with a JSON of all users
+//            res.render('viewAds',{advertisement:ads})
+//         
+//        });
     });
 
     // POST Routes

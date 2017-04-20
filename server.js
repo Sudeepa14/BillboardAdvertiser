@@ -49,9 +49,6 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(require('body-parser').urlencoded({extended: true}));  // get information from html forms
 
-
-
-
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -65,12 +62,12 @@ app.set('view engine', 'handlebars');
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-app.use(express.static(__dirname ));
+app.use(express.static('public'));//__dirname +
 app.use(flash()); // use connect-flash for flash messages stored in session
 require('./config/passport.js')(passport);
 
 // routes ======================================================================
-    require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 
 
